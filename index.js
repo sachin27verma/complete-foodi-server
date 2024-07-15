@@ -8,7 +8,13 @@ require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Apply CORS middleware
-app.use(cors());
+const corsOptions = {
+  origin: 'https://foodi-client-b9e3c.web.app',
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+//app.use(cors());
 app.use(express.json());
 
 // MongoDB configuration using mongoose
