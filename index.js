@@ -9,7 +9,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Apply CORS middleware
 const corsOptions = {
-  origin: 'https://foodi-client-b9e3c.web.app',
+  origin: 'http://localhost:5173/',
   optionsSuccessStatus: 200,
 };
 
