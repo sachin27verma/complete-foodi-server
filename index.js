@@ -28,7 +28,7 @@ mongoose
 app.post('/jwt', async (req, res) => {
   try {
     const { email } = req.body;
-    const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY, {
+    const token = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '1h',
     });
     console.log(token)
