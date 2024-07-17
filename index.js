@@ -8,13 +8,13 @@ require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Apply CORS middleware
-const corsOptions = {
-  origin: 'https://foodi-client-b9e3c.web.app/',
-  Credentials: true,
-  optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: 'https://foodi-client-b9e3c.web.app/',
+//   Credentials: true,
+//   optionsSuccessStatus: 200,
+// };
 
-app.use(cors(corsOptions));
+app.use(cors);
 //app.use(cors());
 app.use(express.json());
 
@@ -32,7 +32,7 @@ app.post('/jwt', async (req, res) => {
       expiresIn: '1h',
     });
     res.status(200).send(token);
-    
+
     
   } catch (error) {
     console.log('Error creating JWT', error);
