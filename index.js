@@ -9,7 +9,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Apply CORS middleware
 const corsOptions = {
-  origin: 'https://foodi-client-b9e3c.web.app/',
+  origin: 'https://foodie-henna.vercel.app/',
   Credentials: true,
   optionsSuccessStatus: 200,
 };
