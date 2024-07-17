@@ -9,7 +9,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Apply CORS middleware
 const corsOptions = {
-  origin: 'http://localhost:5173/',
+  origin: 'https://foodi-client-b9e3c.web.app/',
+  Credentials: true,
   optionsSuccessStatus: 200,
 };
 
@@ -25,9 +26,20 @@ mongoose
 
 // JWT authentication
 app.post('/jwt', async (req, res) => {
-  const user = req.body;
-  const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-  res.send({ token });
+  try {
+    const { email } = req.body;
+    const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY, {
+      expiresIn: '1h',
+    });
+    res.status(200).send(token);
+    
+    
+  } catch (error) {
+    console.log('Error creating JWT', error);
+    res.status(500).send('Error creating JWT');
+  
+  }
+  
 });
 
 // Import routes
