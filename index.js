@@ -9,7 +9,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Apply CORS middleware
 const corsOptions = {
-  origin: '*',
+  origin: 'https://foodi-client-b9e3c.web.app/',
   Credentials: true,
   optionsSuccessStatus: 200,
 };
@@ -25,6 +25,9 @@ mongoose
   .catch((error) => console.log('Error connecting to MongoDB', error));
 
 // JWT authentication
+
+app.options('*', cors());
+
 app.post('/jwt', async (req, res) => {
   try {
     const { email } = req.body;
