@@ -31,6 +31,7 @@ app.post('/jwt', async (req, res) => {
     const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY, {
       expiresIn: '1h',
     });
+    console.log(token)
     res.set('Access-Control-Expose-Headers', 'x-access-token');
     res.set('Acess-Control-Allow-Origin', '*');
     res.status(200).send(token);
@@ -38,7 +39,7 @@ app.post('/jwt', async (req, res) => {
     
   } catch (error) {
     console.log('Error creating JWT', error);
-    res.status(500).send('Error creating JWT');
+    res.status(500).send('Error creating JWT', error);
   
   }
   
